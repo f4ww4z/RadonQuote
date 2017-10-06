@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar myToolbar;
     String randQuote;
+    String author;
     TextView quoteTextView;
     ImageView bgImageView;
     ImageView nextImageView;
@@ -52,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 fetchQuote.execute();
             }
         });
-
     }
 
     /*
@@ -93,8 +93,9 @@ public class MainActivity extends AppCompatActivity {
             try {
                 JSONArray ja = new JSONArray(quote);
                 JSONObject jo = (JSONObject) ja.get(0);
-                String str = jo.get("content").toString();
-                randQuote = str.replaceAll("\\<[^>]*>","");
+                randQuote = jo.get("content").toString().replaceAll("\\<[^>]*>","");
+                author = jo.get("title").toString();
+                Log.v("QUOTE", randQuote+" "+author);
             }
             catch (JSONException ex){
                 ex.printStackTrace();
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            Log.v("Post Exec", randQuote);
+//            Log.v("Post Exec", randQuote);
             quoteTextView.setText(randQuote);
 
         }
