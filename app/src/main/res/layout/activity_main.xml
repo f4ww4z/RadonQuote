@@ -8,7 +8,8 @@
     tools:context="com.example.george.radonquote.MainActivity">
 
     <!--custome toolbar-->
-    <include layout="@layout/toolbar" />
+    <!--
+    -->
 
     <!-- textview for displaying quote / aligned center-->
     <TextView
