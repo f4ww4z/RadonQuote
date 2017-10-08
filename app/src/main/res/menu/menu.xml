@@ -4,6 +4,6 @@
     <!-- Settings, should always be in the overflow -->
     <item android:id="@+id/twitter"
         android:title="tweet"
-        app:showAsAction="always"
-        android:icon="@drawable/share_icon"/>
+        android:icon="@drawable/share_icon"
+        app:showAsAction="always"/>
 </menu>
