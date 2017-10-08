@@ -12,6 +12,7 @@
 
     <!-- textview for displaying quote / aligned center-->
     <TextView
+        android:id="@+id/quote_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/default_quote"
@@ -23,13 +24,12 @@
 
     <!-- imageview as button for next quote / aligned bottom-->
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/next_quote"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_gravity="bottom|center_horizontal"
         android:background="@drawable/nexticon"
         android:clickable="true"
-        android:onClick="getRandomQuote"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
