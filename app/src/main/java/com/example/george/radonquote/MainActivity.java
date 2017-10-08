@@ -26,12 +26,12 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     Toolbar myToolbar;
-    String randQuote;
+    String randQuote = "";
     String author;
     TextView quoteTextView;
-    ImageView bgImageView;
+//    ImageView bgImageView;
     ImageView nextImageView;
-    String url = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&_jsonp=mycallback";
+    String url = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //setting the ActionBar for the activity
-        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
+//        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+//        setSupportActionBar(myToolbar);
 
         quoteTextView = (TextView) findViewById(R.id.quote_text);
         nextImageView = (ImageView) findViewById(R.id.next_quote);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(MainActivity.this,"Fetching Quote!",Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this,"Fetching Quote!",Toast.LENGTH_SHORT).show();
         }
 
         /*
@@ -77,11 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 InputStream inputStream = urlConnection.getInputStream();
                 BufferedReader bf = new BufferedReader(new InputStreamReader(inputStream));
                 String line = "";
-                while(line != null) {
+                while((line = bf.readLine()) != null) {
                     Log.v("line: ",line);
-                    line = bf.readLine();
                     quote += line;
                 }
+                bf.close();
             }
             catch (MalformedURLException ex) {
                 ex.printStackTrace();
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 ex.printStackTrace();
             }
 
+            //json parsing
             try {
                 JSONArray ja = new JSONArray(quote);
                 JSONObject jo = (JSONObject) ja.get(0);
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
 //            Log.v("Post Exec", randQuote);
-            quoteTextView.setText(randQuote);
+            quoteTextView.setText(randQuote +"\n"+author);
 
         }
     }
